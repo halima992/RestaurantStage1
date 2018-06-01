@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name=viewport content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+      <link rel="stylesheet" href="css/styles.css">
+      <title>Restaurant Reviews</title>
+   </head>
+   <body>
+      <header>
+         <nav>
+            <h1 tabindex ="0"><a href="/">Restaurant Reviews</a></h1>
+            <a  class="skip" href="#filter">click for go to the main content</a>
+         </nav>
+      </header>
+      <main id="maincontent">
+         <section id="map-container">
+            <div id="map">
+            </div>
+         </section>
+         <section>
+            <div class="filter-options" id ="filter">
+               <h2 tabindex="0">Filter Results</h2>
+               <select id="neighborhoods-select" name="neighborhoods" aria-label="Select neighborhoods" onchange="updateRestaurants()">
+                  <option value="all">All Neighborhoods</option>
+               </select>
+               <select id="cuisines-select" name="cuisines" aria-label="Select cuisines"  onchange="updateRestaurants()">
+                  <option value="all">All Cuisines</option>
+               </select>
+            </div>
+            <div class="container">
+               <ul id="restaurants-list" class="row"> 
+               </ul>
+            </div>
+            </div>
+         </section>
+      </main>
+      <script>
+         if ('serviceWorker' in navigator) {
+           window.addEventListener('load', function () {
+             navigator.serviceWorker.register('sw.js').then(function (registration) {
+               console.log('ServiceWorker registration successful with scope: ', registration.scope);
+             }, function (err) {
+               console.log('ServiceWorker registration failed: ', err);
+             });
+           });
+         }
+         
+      </script>
+      <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+      <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo39OcFynfegYbyCrA1aZGshPw95rDQGg&callback=initMap"></script>
+      <footer id="footer">
+         Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+      </footer>
+   </body>
+</html>
